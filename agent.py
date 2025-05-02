@@ -1,5 +1,4 @@
 from openai import OpenAI
-from openai_agents import Agent, MCPServerSse
 import os
 import asyncio
 from dotenv import load_dotenv
