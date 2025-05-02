@@ -7,6 +7,7 @@ from typing_extensions import Annotated
 from fastapi import APIRouter, Query, HTTPException, Depends  
 import message_service  
 from schema import Payload, Message, Audio, User  
+import asyncio
 
 # Load environment variables from .env file
 load_dotenv()
@@ -65,7 +66,7 @@ def message_extractor(
 
 
 @app.post("/", status_code=200)  
-def receive_whatsapp(  
+async def receive_whatsapp(  
         user: Annotated[User, Depends(get_current_user)],  
         user_message: Annotated[str, Depends(message_extractor)],  
 ):  
@@ -74,10 +75,11 @@ def receive_whatsapp(
     if not user:  
         raise HTTPException(status_code=401, detail="Unauthorized")  
     if user_message:  
-        thread = threading.Thread(
-            target=message_service.respond_and_send_message, 
-            args=(user_message, user)
-        )  
-        thread.daemon = True  
-        thread.start()  
+        # Create a new event loop for the background task
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+        # Run the async function in the background
+        asyncio.create_task(message_service.respond_and_send_message(user_message, user))
+        
     return {"status": "ok"}
