@@ -3,7 +3,7 @@ import json
 import requests  
 import asyncio
 from agent import run_agent_with_mcp_servers
-from schema import User  
+from schema import User, Audio  
 from typing import BinaryIO
 from dotenv import load_dotenv
 from openai import OpenAI
