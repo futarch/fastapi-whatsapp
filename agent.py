@@ -1,24 +1,25 @@
-from openai import OpenAI
-import os
 import asyncio
+import os
 from dotenv import load_dotenv
-from agents import MCPServerSse, Agent
+from openai import OpenAI
+from agents import Agent
+from agents.mcp.server import MCPServerSse
 
-# Load environment variables
+# Charger les variables d'environnement
 load_dotenv()
 
-# Initialize OpenAI client
+# Initialiser le client OpenAI
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 async def run_agent_with_mcp_servers():
-    # Initialize remote SSE MCP server
+    # Initialiser le serveur MCP SSE distant
     remote_server = MCPServerSse(
-        url=os.getenv("MCP_SERVER_URL"),
+        params={"url": os.getenv("MCP_SERVER_URL")},
         cache_tools_list=True
     )
 
     async with remote_server:
-        # Create agent with proper configuration
+        # Créer l'agent avec la configuration appropriée
         agent = Agent(
             name="WhatsApp Assistant",
             instructions="You are a helpful WhatsApp assistant. Use the available tools to accomplish tasks.",
@@ -26,6 +27,10 @@ async def run_agent_with_mcp_servers():
             client=client
         )
 
-        # Run the agent
+        # Exécuter l'agent
         result = await agent.run("Complete the requested task using appropriate tools.")
         return result
+
+# Exécuter la fonction principale
+if __name__ == "__main__":
+    asyncio.run(run_agent_with_mcp_servers())
