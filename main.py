@@ -5,7 +5,7 @@ import os
 import threading  
 from typing_extensions import Annotated  
 from fastapi import APIRouter, Query, HTTPException, Depends  
-from domain import message_service  
+import message_service  
 from schema import Payload, Message, Audio, User  
 
 # Load environment variables from .env file
