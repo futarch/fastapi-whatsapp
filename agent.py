@@ -1,15 +1,11 @@
 import asyncio
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
 from agents import Agent
 from agents.mcp.server import MCPServerSse
 
 # Charger les variables d'environnement
 load_dotenv()
-
-# Initialiser le client OpenAI
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 async def run_agent_with_mcp_servers():
     # Initialiser le serveur MCP SSE distant
