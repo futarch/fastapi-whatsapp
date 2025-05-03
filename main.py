@@ -27,16 +27,6 @@ def verify_whatsapp(
     if hub_mode == "subscribe" and hub_verify_token == VERIFICATION_TOKEN:
         return hub_challenge
     raise HTTPException(status_code=403, detail="Invalid verification token")
-
-
-@app.get("/health")
-def health():
-    return {"status": "healthy"}
-
-
-@app.get("/readiness")
-def readiness():
-    return {"status": "ready"}
     
 
 def parse_message(payload: Payload) -> Message | None:  
