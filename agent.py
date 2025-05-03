@@ -23,7 +23,7 @@ async def run_agent_with_mcp_servers():
         )
 
         # Exécuter l'agent
-        result = await agent.run("Complete the requested task using appropriate tools.")
+        result = await agent.run_async("Complete the requested task using appropriate tools.")
         return result
 
 # Exécuter la fonction principale
