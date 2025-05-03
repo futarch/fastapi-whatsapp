@@ -99,25 +99,10 @@ def send_whatsapp_message(to, message):
 
 
 async def respond_and_send_message(user_message: str, user: User):  
-    try:
-        print(f"[INFO] Received message from user ({user.phone}): {user_message}")
+    # Run the agent and get the response
+    response = await run_agent_with_mcp_servers(user_message)
+    # Send the response via WhatsApp
+    await send_whatsapp_message(user.phone, response)
 
-        # Run the agent and get the response
-        response = await run_agent_with_mcp_servers(user_message)
-
-        print(f"[INFO] Agent response: {repr(response)}")
-
-        # Check if response is valid
-        if not response:
-            print("[WARNING] Empty response from agent.")
-            return
-
-        # Send the response via WhatsApp
-        result = await send_whatsapp_message(user.phone, response)
-
-        print(f"[INFO] WhatsApp message send result: {result}")
-
-    except Exception as e:
-        print(f"[ERROR] Exception in respond_and_send_message: {e}")
 
 
