@@ -103,7 +103,7 @@ async def respond_and_send_message(user_message: str, user: User):
     # Run the agent and get the response
     response = await run_agent_with_mcp_servers(user_message)
     # Send the response via WhatsApp
-    await send_whatsapp_message(user.phone, response)
+    send_whatsapp_message(user.phone, response)
 
 
 
