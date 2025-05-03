@@ -11,6 +11,7 @@ async def run_agent_with_mcp_servers():
     # Initialiser le serveur MCP SSE distant
     remote_server = MCPServerSse(
         params={"url": os.getenv("MCP_SERVER_URL")},
+        cache_tools_list=True
     )
 
     async with remote_server:
