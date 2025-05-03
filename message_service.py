@@ -98,9 +98,9 @@ def send_whatsapp_message(to, message):
     return response.json()
 
 
-async def respond_and_send_message(user_message: str, user: User):  
+async def respond_and_send_message(user_message: str):  
     # Run the agent and get the response
-    response = await run_agent_with_mcp_servers(user_message, user.id)
+    response = await run_agent_with_mcp_servers(user_message)
     # Send the response via WhatsApp
     send_whatsapp_message(user.phone, response)
 
