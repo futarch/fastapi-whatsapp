@@ -24,4 +24,4 @@ async def run_agent_with_mcp_servers(user_message: str) -> str:
 
         # Exécuter l'agent
         result = await Runner.run(agent, user_message)
-        result.final_output
+        return result.final_output
