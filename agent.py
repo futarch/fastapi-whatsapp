@@ -25,7 +25,3 @@ async def run_agent_with_mcp_servers(user_message: str) -> str:
         # Exécuter l'agent
         result = await Runner.run(agent, user_message)
         result.final_output
-
-# Exécuter la fonction principale
-if __name__ == "__main__":
-    asyncio.run(run_agent_with_mcp_servers())
