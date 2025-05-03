@@ -12,6 +12,7 @@ from openai import OpenAI
 load_dotenv()
 
 WHATSAPP_API_KEY = os.getenv("WHATSAPP_API_KEY")
+WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID')
 llm = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
