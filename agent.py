@@ -23,8 +23,7 @@ async def run_agent_with_mcp_servers():
         agent = Agent(
             name="WhatsApp Assistant",
             instructions="You are a helpful WhatsApp assistant. Use the available tools to accomplish tasks.",
-            mcp_servers=[remote_server],
-            client=client
+            mcp_servers=[remote_server]
         )
 
         # Exécuter l'agent
