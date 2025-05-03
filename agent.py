@@ -7,7 +7,7 @@ from agents.mcp.server import MCPServerSse
 # Charger les variables d'environnement
 load_dotenv()
 
-async def run_agent_with_mcp_servers():
+async def run_agent_with_mcp_servers(user_message: str) -> str:
     # Initialiser le serveur MCP SSE distant
     remote_server = MCPServerSse(
         params={"url": os.getenv("MCP_SERVER_URL")},
@@ -23,7 +23,7 @@ async def run_agent_with_mcp_servers():
         )
 
         # Exécuter l'agent
-        result = await Runner.run(agent, "Complete the requested task using appropriate tools.")
+        result = await Runner.run(agent, user_message)
         result.final_output
 
 # Exécuter la fonction principale
