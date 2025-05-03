@@ -1,7 +1,7 @@
 import asyncio
 import os
 from dotenv import load_dotenv
-from agents import Agent
+from agents import Agent, Runner
 from agents.mcp.server import MCPServerSse
 
 # Charger les variables d'environnement
@@ -23,8 +23,8 @@ async def run_agent_with_mcp_servers():
         )
 
         # Exécuter l'agent
-        result = await agent.run_async("Complete the requested task using appropriate tools.")
-        return result
+        result = await Runner.run(agent, "Complete the requested task using appropriate tools.")
+        result.final_output
 
 # Exécuter la fonction principale
 if __name__ == "__main__":
