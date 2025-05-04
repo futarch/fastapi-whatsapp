@@ -18,7 +18,7 @@ llm = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def download_file_from_facebook(file_id: str, file_type: str, mime_type: str) -> str | None:  
     # First GET request to retrieve the download URL  
-    url = f"https://graph.facebook.com/v22.0/{WHATSAPP_PHONE_NUMBER_ID}/{file_id}"  
+    url = f"https://graph.facebook.com/v22.0/{file_id}"  
     headers = {"Authorization": f"Bearer {WHATSAPP_API_KEY}"}  
     response = requests.get(url, headers=headers)
     if response.status_code == 200:  
