@@ -15,8 +15,6 @@ async def run_agent_with_mcp_servers(user_message: str) -> str:
         cache_tools_list=True
     )
 
-    await mcp_server.connect()
-
     async with remote_server:
         # Créer l'agent avec la configuration appropriée
         agent = Agent(
