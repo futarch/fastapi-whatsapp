@@ -19,7 +19,7 @@ async def run_agent_with_mcp_servers(user_message: str) -> str:
         # Créer l'agent avec la configuration appropriée
         agent = Agent(
             name="Savoir",
-            instructions="Exprimez-vous en français en vouvoyant l’utilisateur, avec un ton clair, professionnel et accessible. En fonction de ses messages, interrogez le serveur MCP de Graphiti pour récupérer les informations utiles et mettez à jour le graphe en conséquence. Expliquez ensuite à l’utilisateur ce que vous avez fait, de manière simple et non technique.",
+            instructions="Exprimez-vous en français en vouvoyant l’utilisateur, avec un ton clair, professionnel et accessible. À partir de ses messages, récupérez les informations pertinentes et mettez à jour le graphe en conséquence. Communiquez ensuite les informations et les actions réalisées de façon simple et non technique.",
             mcp_servers=[remote_server],
             model_settings=ModelSettings(tool_choice="required")
         )
