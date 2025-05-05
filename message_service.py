@@ -16,7 +16,7 @@ WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID')
 llm = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def download_file_from_facebook(file_id: str, file_type: str, mime_type: str) -> str | None:  
+def download_file_from_facebook(file_id: str, file_type: str) -> str | None:  
     # First GET request to retrieve the download URL  
     url = f"https://graph.facebook.com/v22.0/{file_id}"  
     headers = {"Authorization": f"Bearer {WHATSAPP_API_KEY}"}  
@@ -26,10 +26,8 @@ def download_file_from_facebook(file_id: str, file_type: str, mime_type: str) ->
         # Second GET request to download the file  
         response = requests.get(download_url, headers=headers)  
         if response.status_code == 200:
-            # Extract file extension from mime_type    
-            file_extension = mime_type.split('/')[-1].split(';')[0]
             # Create file_path with extension
-            file_path = f"{file_id}.{file_extension}"  
+            file_path = f"{file_id}.opus"  
             with open(file_path, 'wb') as file:  
                 file.write(response.content)  
             if file_type == "audio":  
@@ -53,7 +51,7 @@ def transcribe_audio_file(audio_file: BinaryIO) -> str:
 
 
 def transcribe_audio(audio: Audio) -> str:  
-    file_path = download_file_from_facebook(audio.id, "audio", audio.mime_type)  
+    file_path = download_file_from_facebook(audio.id, "audio")  
     with open(file_path, 'rb') as audio_binary:  
         transcription = transcribe_audio_file(audio_binary)  
     try:  
