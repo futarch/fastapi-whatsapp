@@ -1,11 +1,15 @@
 import asyncio
 import os
+import httpx
+import logging
 from dotenv import load_dotenv
 from agents import Agent, Runner
 from agents.mcp.server import MCPServerSse
 
 # Charger les variables d'environnement
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 async def run_agent_with_mcp_servers(user_message: str) -> str:
     # Initialiser le serveur MCP SSE distant
