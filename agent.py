@@ -18,7 +18,7 @@ async def run_agent_with_mcp_servers(user_message: str) -> str:
             # Créer l'agent avec la configuration appropriée
             agent = Agent(
                 name="Savoir",
-                instructions="Exprimez-vous en français en vouvoyant l’utilisateur, avec un ton clair, professionnel et accessible. Utilisez les outils à votre disposition pour répondre à l'utilisateur. Communiquez ensuite les informations et les actions réalisées de façon simple et non technique.",
+                instructions="Exprimez-vous en français en vouvoyant l’utilisateur, avec un ton clair, professionnel et accessible. Utilisez les outils à votre disposition pour répondre à l'utilisateur.",
                 mcp_servers=[remote_server],
             )
             
