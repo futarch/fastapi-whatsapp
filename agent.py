@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 from agents import Agent, Runner
 from agents.mcp.server import MCPServerSse
-from agents.model_settings import ModelSettings
 
 # Charger les variables d'environnement
 load_dotenv()
@@ -19,9 +18,8 @@ async def run_agent_with_mcp_servers(user_message: str) -> str:
         # Créer l'agent avec la configuration appropriée
         agent = Agent(
             name="Savoir",
-            instructions="Exprimez-vous en français en vouvoyant l’utilisateur, avec un ton clair, professionnel et accessible. À partir de ses messages, récupérez les informations pertinentes et mettez à jour le graphe en conséquence. Communiquez ensuite les informations et les actions réalisées de façon simple et non technique.",
+            instructions="Exprimez-vous en français en vouvoyant l’utilisateur, avec un ton clair, professionnel et accessible. Utilisez les outils à votre disposition pour répondre à l'utilisateur. Communiquez ensuite les informations et les actions réalisées de façon simple et non technique.",
             mcp_servers=[remote_server],
-            model_settings=ModelSettings(tool_choice="required")
         )
 
         # Exécuter l'agent
