@@ -3,7 +3,7 @@ import os
 import httpx
 import logging
 from dotenv import load_dotenv
-from agents import Agent, Runner
+from agents import Agent, Runner, ModelSettings
 from agents.mcp.server import MCPServerSse
 
 # Charger les variables d'environnement
