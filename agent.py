@@ -24,6 +24,8 @@ async def run_agent_with_mcp_servers(user_message: str) -> str:
                 name="Savoir",
                 instructions="Exprimez-vous en français en vouvoyant l’utilisateur, avec un ton clair, professionnel et accessible. Utilisez les outils à votre disposition pour répondre à l'utilisateur.",
                 mcp_servers=[remote_server],
+                model='gpt-4.1-mini', 
+                temperature=0
             )
             
             # Exécuter l'agent
